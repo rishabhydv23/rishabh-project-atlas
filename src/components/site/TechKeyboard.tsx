@@ -54,12 +54,12 @@ export default function TechKeyboard() {
       const colors = ["--scene-yellow", "--scene-blue", "--scene-cyan", "--scene-ink", "--scene-green", "--scene-cyan", "--scene-coral", "--scene-ink", "--scene-green", "--scene-coral", "--scene-blue", "--scene-ink", "--scene-blue", "--scene-pink", "--scene-yellow"];
       const keys: InstanceType<typeof THREE.Mesh>[] = [];
       technologies.forEach((name, index) => {
-        const color = token(colors[index]);
+        const color = token(colors[index] ?? "--scene-blue");
         const material = new THREE.MeshStandardMaterial({ color, roughness: 0.3, metalness: 0.12 });
         materials.push(material);
         const key = new THREE.Mesh(keyGeo, material);
         key.position.set((index % 5 - 2) * 1.17, 0.18, (Math.floor(index / 5) - 1) * 1.17);
-        key.userData.name = name;
+        key.userData["name"] = name;
         group.add(key);
         keys.push(key);
         const canvas = document.createElement("canvas");
@@ -109,10 +109,16 @@ export default function TechKeyboard() {
         targetX = pointer.y * 0.045;
       }
       function leave() { pointer.set(10, 10); targetY = -0.24; targetX = 0; }
-      function select() { if (hovered) setSelected(String(hovered.userData.name)); }
+      function select() { if (hovered) setSelected(String(hovered.userData["name"])); }
+      function press(event: PointerEvent) {
+        move(event);
+        raycaster.setFromCamera(pointer, camera);
+        hovered = raycaster.intersectObjects(keys, false)[0]?.object as typeof hovered;
+        select();
+      }
       element.addEventListener("pointermove", move);
       element.addEventListener("pointerleave", leave);
-      element.addEventListener("pointerdown", (event) => { move(event); raycaster.setFromCamera(pointer, camera); hovered = raycaster.intersectObjects(keys, false)[0]?.object as typeof hovered; select(); });
+      element.addEventListener("pointerdown", press);
       const resize = new ResizeObserver(() => {
         if (!element) return;
         const width = element.clientWidth;
@@ -137,6 +143,7 @@ export default function TechKeyboard() {
         resize.disconnect();
         element.removeEventListener("pointermove", move);
         element.removeEventListener("pointerleave", leave);
+        element.removeEventListener("pointerdown", press);
         renderer.setAnimationLoop(null);
         geometries.forEach((geometry) => geometry.dispose());
         materials.forEach((material) => material.dispose());

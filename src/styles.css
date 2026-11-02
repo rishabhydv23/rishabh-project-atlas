@@ -139,12 +139,12 @@
   .scene-caption { left: 14%; right: 10%; bottom: 82px; }
 }
 @media (max-width: 767px) {
-  .portfolio-hero { padding-top: 120px; }
+  .portfolio-hero { padding-top: 96px; }
   .hero-content { display: block; min-height: 0; }
   .hero-intro { width: 100%; }
   .hero-name { font-size: 72px; }
-  .hero-scene { position: relative; width: calc(100% + 40px); right: 20px; height: 340px; margin-top: -12px; }
-  .tech-scene { min-height: 340px; }
+  .hero-scene { position: relative; width: calc(100% + 40px); right: 20px; height: 250px; margin-top: -12px; }
+  .tech-scene { min-height: 250px; }
   .scene-caption { left: 16%; right: 16%; bottom: 15px; }
   .hero-bottom { height: 65px; }
 }
