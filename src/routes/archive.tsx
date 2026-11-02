@@ -10,6 +10,8 @@ export const Route = createFileRoute("/archive")({
     meta: [
       { title: "Project Archive — Rishabh" },
       { name: "description", content: "Every project Rishabh has built: full stack apps, e-commerce, DevOps pipelines and frontend experiments." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Project Archive — Rishabh" },
       { property: "og:description", content: "Searchable archive of full stack, e-commerce and DevOps projects by Rishabh." },
     ],
