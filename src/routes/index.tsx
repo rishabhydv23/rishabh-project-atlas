@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Award, Download, Github, GraduationCap, Linkedin, Mail, MapPin } from "lucide-react";
+import { ClientOnly, createFileRoute, Link } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
+import { Button } from "@/components/ui/button";
+const TechKeyboard = lazy(() => import("@/components/site/TechKeyboard"));
+import { ArrowRight, ArrowUpRight, Award, Github, GraduationCap, Linkedin, Mail, MapPin } from "lucide-react";
 import { achievements, certificates, profile, projects, services, skills } from "@/data/portfolio";
 import { Badge, Reveal, SectionHead } from "@/components/site/Reveal";
 import { FeaturedProject } from "@/components/site/ProjectCard";
@@ -11,6 +13,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Rishabh — Full Stack Developer & Freelance Web Developer" },
       { name: "description", content: "Rishabh is a Full Stack Developer from India building modern web apps, scalable backends and e-commerce platforms. Open to freelance projects." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Rishabh — Full Stack Developer" },
       { property: "og:description", content: "Turning ideas into digital experiences through code. Selected work, skills and freelance services." },
     ],
@@ -22,92 +26,33 @@ const btnPrimary = "group inline-flex items-center gap-2 rounded-full bg-primary
 const btnGhost = "inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm transition-colors hover:border-primary hover:text-primary";
 
 function Hero() {
-  const reduce = useReducedMotion();
-  const words = "Turning Ideas Into Digital Experiences Through Code.".split(" ");
   return (
-    <section id="home" className="grain-bg relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
-      <div className="container-page grid items-center gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-7">
+    <section id="home" className="portfolio-hero relative overflow-hidden">
+      <div className="container-page hero-content">
+        <div className="hero-intro">
           <Reveal>
-            <div className="mb-8 flex flex-wrap items-center gap-3 text-sm">
-              <span className="inline-flex items-center gap-2 rounded-full border bg-surface px-3 py-1.5">
-                <span className="pulse-dot h-2 w-2 rounded-full bg-success" /> Available for freelance
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> {profile.location}</span>
+            <div className="mb-7 flex items-center gap-2 font-mono text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-success" /> AVAILABLE FOR FREELANCE</div>
+            <p className="mb-3 text-lg text-muted-foreground">Hey, I'm</p>
+            <h1 className="hero-name font-display font-bold">Rishabh<span className="text-primary">.</span></h1>
+            <p className="mt-5 text-xl font-medium">Full Stack Developer</p>
+            <p className="mt-4 max-w-md text-sm leading-7 text-muted-foreground">Turning ideas into thoughtful digital experiences. From the first pixel to the last line of code.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="h-12 rounded-md px-6"><a href="#work">Explore my work <ArrowUpRight /></a></Button>
+              <Button asChild variant="outline" size="lg" className="h-12 rounded-md px-6"><a href="#contact">Let's talk <ArrowRight /></a></Button>
             </div>
-          </Reveal>
-          <h1 className="font-display text-[3.2rem] leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.6rem]">
-            {words.map((w, i) => (
-              <motion.span
-                key={i}
-                className={`mr-[0.22em] inline-block ${w === "Digital" || w === "Experiences" ? "italic text-primary" : ""}`}
-                initial={reduce ? false : { opacity: 0, y: 30, filter: "blur(6px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {w}
-              </motion.span>
-            ))}
-          </h1>
-          <Reveal delay={0.5}>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              I'm Rishabh, a Full Stack Developer building modern web applications, scalable backend systems, and meaningful digital products.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#work" className={btnPrimary}>View My Work <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
-              <a href={profile.resume} target="_blank" rel="noreferrer" className={btnGhost}><Download className="h-4 w-4" /> Resume</a>
-              <a href="#contact" className={btnGhost}>Contact Me</a>
-            </div>
-            <div className="mt-10 flex items-center gap-5 text-sm text-muted-foreground">
-              <a href={profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foreground"><Github className="h-4 w-4" /> rishabh-ydv23</a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foreground"><Linkedin className="h-4 w-4" /> LinkedIn</a>
+            <div className="mt-7 flex items-center gap-3">
+              <Button asChild variant="ghost" size="icon"><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><Github /></a></Button>
+              <Button asChild variant="ghost" size="icon"><a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><Linkedin /></a></Button>
+              <span className="ml-2 flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{profile.location}</span>
             </div>
           </Reveal>
         </div>
-        <Reveal delay={0.35} className="lg:col-span-5">
-          <CodeVisual />
-        </Reveal>
+        <div className="hero-scene">
+          <ClientOnly fallback={<div className="tech-scene" />}><Suspense fallback={<div className="tech-scene" />}><TechKeyboard /></Suspense></ClientOnly>
+        </div>
       </div>
+      <div className="container-page hero-bottom"><span className="font-mono text-xs text-muted-foreground">DESIGN. DEVELOP. DELIVER.</span><a href="#work" className="flex items-center gap-3 text-xs text-muted-foreground">Selected work <ArrowRight className="h-4 w-4 rotate-90" /></a></div>
     </section>
-  );
-}
-
-function CodeVisual() {
-  const lines: [string, string][] = [
-    ["kw", "const"], ["", " rishabh = {"],
-  ];
-  void lines;
-  return (
-    <div className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-primary/5 blur-2xl" />
-      <div className="rounded-2xl border bg-card shadow-2xl">
-        <div className="flex items-center gap-2 border-b px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="ml-3 font-mono text-xs text-muted-foreground">rishabh.ts</span>
-        </div>
-        <pre className="overflow-x-auto p-5 font-mono text-[0.8rem] leading-7 text-muted-foreground">
-<span className="text-primary">const</span> <span className="text-foreground">developer</span> = {"{"}{"\n"}
-{"  "}name: <span className="text-success">"Rishabh"</span>,{"\n"}
-{"  "}role: <span className="text-success">"Full Stack Developer"</span>,{"\n"}
-{"  "}education: <span className="text-success">"B.Tech CSE · LPU"</span>,{"\n"}
-{"  "}stack: [{"\n"}
-{"    "}<span className="text-success">"React"</span>, <span className="text-success">"Next.js"</span>,{"\n"}
-{"    "}<span className="text-success">"Node"</span>, <span className="text-success">"Express"</span>,{"\n"}
-{"    "}<span className="text-success">"MongoDB"</span>, <span className="text-success">"Docker"</span>{"\n"}
-{"  "}],{"\n"}
-{"  "}openToWork: <span className="text-primary">true</span>,{"\n"}
-{"}"};{"\n"}
-{"\n"}
-<span className="text-primary">await</span> <span className="text-foreground">developer</span>.build(<span className="text-success">"your idea"</span>);
-        </pre>
-      </div>
-      <div className="absolute -bottom-6 -left-4 hidden rounded-xl border bg-surface px-4 py-3 sm:block">
-        <p className="font-display text-3xl text-primary">350+</p>
-        <p className="text-xs text-muted-foreground">DSA problems solved</p>
-      </div>
-    </div>
   );
 }
 
