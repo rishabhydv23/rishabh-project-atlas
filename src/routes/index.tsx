@@ -7,6 +7,7 @@ import { achievements, certificates, profile, projects, services, skills } from 
 import { Badge, Reveal, SectionHead } from "@/components/site/Reveal";
 import { FeaturedProject } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
+import { Doors, Loader, RoleRotator, Timeline } from "@/components/site/Signature";
 import portrait from "@/assets/rishabh_cutout.png";
 
 export const Route = createFileRoute("/")({
@@ -33,13 +34,13 @@ function Hero() {
         <div className="hero-intro">
           <Reveal>
             <div className="mb-7 flex items-center gap-2 font-mono text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-success" /> AVAILABLE FOR FREELANCE</div>
-            <p className="mb-3 text-lg text-muted-foreground">Hey, I'm</p>
-            <h1 className="hero-name font-display font-bold">Rishabh<span className="text-primary">.</span></h1>
-            <p className="mt-5 text-xl font-medium">Full Stack Developer</p>
-            <p className="mt-4 max-w-md text-sm leading-7 text-muted-foreground">Turning ideas into thoughtful digital experiences. From the first pixel to the last line of code.</p>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">Independent Freelancer</p>
+            <h1 className="hero-name font-display">Hi, I'm Rishabh.<br /><span className="text-muted-foreground">I am a</span></h1>
+            <p className="mt-3 text-3xl font-semibold md:text-4xl"><RoleRotator /></p>
+            <p className="mt-6 max-w-md text-sm leading-7 text-muted-foreground">Turning ideas into thoughtful digital experiences. From the first pixel to the last line of code.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="h-12 rounded-md px-6"><a href="#work">Explore my work <ArrowUpRight /></a></Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-md px-6"><a href="#contact">Let's talk <ArrowRight /></a></Button>
+              <Button asChild size="lg" className="h-12 rounded-full px-7"><a href="#contact">Hire me <ArrowUpRight /></a></Button>
+              <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-7"><a href="#work">See my work <ArrowRight /></a></Button>
             </div>
             <div className="mt-7 flex items-center gap-3">
               <Button asChild variant="ghost" size="icon"><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><Github /></a></Button>
@@ -52,12 +53,11 @@ function Hero() {
           <img src={portrait} alt="Portrait of Rishabh" className="hero-portrait-img" />
           <div className="hero-portrait-card">
             <span className="h-2 w-2 rounded-full bg-success" />
-            <div><p className="text-sm font-medium">Rishabh</p><p className="text-xs text-muted-foreground">Full Stack · LPU '27</p></div>
+            <div><p className="text-sm font-medium">Rishabh</p><p className="text-xs text-muted-foreground">My ability card · Full Stack</p></div>
           </div>
         </div>
       </div>
-      <p aria-hidden className="hero-watermark font-display">Rishabh</p>
-      <div className="container-page hero-bottom"><span className="font-mono text-xs text-muted-foreground">DESIGN. DEVELOP. DELIVER.</span><a href="#work" className="flex items-center gap-3 text-xs text-muted-foreground">Selected work <ArrowRight className="h-4 w-4 rotate-90" /></a></div>
+            <div className="container-page hero-bottom"><span className="flex items-center gap-2 text-xs text-muted-foreground"><span className="h-2 w-2 rounded-full bg-success" />Available for work · Remote-first, worldwide</span><a href="#work" className="flex items-center gap-3 text-xs text-muted-foreground">Scroll to explore <ArrowRight className="h-4 w-4 rotate-90" /></a></div>
     </section>
   );
 }
@@ -239,11 +239,13 @@ function Contact() {
 function Index() {
   return (
     <main>
+      <Loader />
       <Hero />
+      <Doors />
       <Toolkit3D />
-      <Manifesto />
       <Work />
       <About />
+      <Timeline />
       <Experience />
       <Services />
       <Certificates />
