@@ -7,7 +7,7 @@ import { achievements, certificates, profile, projects, services, skills } from 
 import { Badge, Reveal, SectionHead } from "@/components/site/Reveal";
 import { FeaturedProject } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
-import portrait from "@/assets/rishabh_portrait.jpg.asset.json";
+import portrait from "@/assets/rishabh_cutout.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,7 +49,7 @@ function Hero() {
           </Reveal>
         </div>
         <div className="hero-portrait">
-          <img src={portrait.url} alt="Portrait of Rishabh" className="hero-portrait-img" />
+          <img src={portrait} alt="Portrait of Rishabh" className="hero-portrait-img" />
           <div className="hero-portrait-card">
             <span className="h-2 w-2 rounded-full bg-success" />
             <div><p className="text-sm font-medium">Rishabh</p><p className="text-xs text-muted-foreground">Full Stack · LPU '27</p></div>
