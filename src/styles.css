@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Onest", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -38,19 +38,19 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.14 0.004 40);
-  --foreground: oklch(0.93 0.008 50);
-  --surface: oklch(0.18 0.006 30);
-  --card: oklch(0.19 0.007 30);
+  --background: oklch(0.13 0.004 285);
+  --foreground: oklch(0.93 0.03 55);
+  --surface: oklch(0.17 0.006 60);
+  --card: oklch(0.18 0.008 60);
   --card-foreground: oklch(0.95 0.008 85);
   --popover: oklch(0.2 0.005 80);
   --popover-foreground: oklch(0.95 0.008 85);
-  --primary: oklch(0.78 0.035 20);
-  --primary-foreground: oklch(0.16 0.01 20);
+  --primary: oklch(0.75 0.17 118);
+  --primary-foreground: oklch(0.14 0.01 118);
   --secondary: oklch(0.24 0.006 80);
   --secondary-foreground: oklch(0.93 0.008 85);
   --muted: oklch(0.24 0.006 80);
-  --muted-foreground: oklch(0.66 0.02 20);
+  --muted-foreground: oklch(0.72 0.02 60);
   --accent: oklch(0.27 0.01 80);
   --accent-foreground: oklch(0.95 0.008 85);
   --destructive: oklch(0.68 0.19 25);
@@ -58,10 +58,7 @@
   --success: oklch(0.78 0.16 150);
   --border: oklch(1 0 0 / 9%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.78 0.035 20 / 60%);
-  --glow-warm: oklch(0.32 0.05 45 / 55%);
-  --pill-blue: oklch(0.3 0.05 255);
-  --pill-mauve: oklch(0.36 0.04 350);
+  --ring: oklch(0.75 0.17 118 / 60%);
   --scene-base: #23272b;
   --scene-ink: #343a43;
   --scene-light: #ffffff;
@@ -134,12 +131,12 @@
 .scene-fallback span { padding: 14px; border: 1px solid var(--border); border-radius: 6px; color: var(--primary); background: var(--surface); }
 .hero-bottom { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .font-display em { font-style: normal; }
-.font-display { letter-spacing: -0.035em; font-weight: 600; line-height: 1; }
-.hero-name { font-size: 76px; line-height: 1; }
+.font-display { letter-spacing: 0; text-transform: uppercase; font-weight: 400; line-height: 0.95; }
+.hero-name { font-size: 150px; line-height: 0.88; }
 .marquee { display: flex; width: max-content; animation: marquee 30s linear infinite; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (max-width: 1023px) {
-  .hero-name { font-size: 60px; }
+  .hero-name { font-size: 110px; }
   .hero-content { min-height: 560px; }
   .hero-scene { right: -15px; width: 57%; }
   .scene-caption { left: 14%; right: 10%; bottom: 82px; }
@@ -148,15 +145,15 @@
   .portfolio-hero { padding-top: 96px; }
   .hero-content { display: block; min-height: 0; }
   .hero-intro { width: 100%; }
-  .hero-name { font-size: 46px; }
+  .hero-name { font-size: 96px; }
   .hero-scene { position: relative; width: calc(100% + 40px); right: 20px; height: 250px; margin-top: -12px; }
   .tech-scene { min-height: 250px; }
   .scene-caption { left: 16%; right: 16%; bottom: 15px; }
   .hero-bottom { height: 65px; }
 }
-@media (max-width: 374px) { .hero-name { font-size: 38px; } }
+@media (max-width: 374px) { .hero-name { font-size: 76px; } }
 
-.portfolio-hero { background: radial-gradient(ellipse at 12% 85%, var(--glow-warm), transparent 45%), radial-gradient(ellipse at 70% 30%, var(--surface), var(--background) 70%); }
+.portfolio-hero { background: radial-gradient(ellipse at 12% 85%, oklch(0.3 0.05 50 / 55%), transparent 45%), radial-gradient(ellipse at 70% 30%, var(--surface), var(--background) 70%); }
 .hero-portrait { position: absolute; right: 0; bottom: 0; width: 40%; max-width: 440px; z-index: 1; }
 .hero-portrait-img { width: 100%; display: block; filter: drop-shadow(0 30px 60px oklch(0 0 0 / 60%)); -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent); mask-image: linear-gradient(to bottom, #000 85%, transparent); }
 .hero-portrait-card { position: absolute; left: -32px; bottom: 60px; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 1.25rem; background: color-mix(in oklab, var(--card) 80%, transparent); backdrop-filter: blur(10px); }
@@ -166,15 +163,3 @@
   .hero-portrait { position: relative; width: 100%; max-width: 360px; margin: 32px auto 0; }
   .hero-portrait-card { left: 12px; bottom: 40px; }
 }
-
-.loader { position: fixed; inset: 0; z-index: 100; background: radial-gradient(ellipse at 10% 90%, var(--glow-warm), transparent 40%), var(--background); transition: opacity .7s, visibility .7s; }
-.loader.done { opacity: 0; visibility: hidden; }
-.loader-pill { width: min(420px, 80vw); height: 112px; margin-top: -45px; border-radius: 999px; padding: 26px 64px; font-size: 15px; color: var(--muted-foreground); box-shadow: 0 -10px 30px oklch(0 0 0 / 40%), inset 0 1px 0 oklch(1 0 0 / 8%); animation: pill-in .6s cubic-bezier(.22,1,.36,1) both; }
-@keyframes pill-in { from { opacity: 0; transform: translateY(30px); } }
-.role-swap { display: inline-block; animation: role-in .6s cubic-bezier(.22,1,.36,1); }
-@keyframes role-in { from { opacity: 0; transform: translateY(60%); filter: blur(6px); } }
-.door { position: relative; flex: 0 0 300px; height: 440px; border-radius: 2rem; border: 1px solid var(--border); overflow: hidden; scroll-snap-align: start; background: linear-gradient(180deg, var(--card), var(--surface)); transition: transform .5s cubic-bezier(.22,1,.36,1); }
-.door:hover { transform: translateY(-8px); }
-.door-panel { position: absolute; inset: 14px; border-radius: 1.5rem; border: 1px solid var(--border); transform-origin: left; transition: transform .8s cubic-bezier(.22,1,.36,1); background: linear-gradient(160deg, var(--secondary), var(--card)); }
-.door:hover .door-panel { transform: perspective(900px) rotateY(-70deg); }
-.door-knob { position: absolute; right: 18px; top: 50%; width: 8px; height: 40px; border-radius: 99px; background: var(--primary); }

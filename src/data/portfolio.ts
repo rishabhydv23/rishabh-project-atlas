@@ -191,17 +191,3 @@ export const services = [
   { title: "APIs & Backend", body: "REST APIs, authentication and database architecture done right." },
   { title: "Redesign & Maintenance", body: "Modernise an existing site and keep it healthy over time." },
 ];
-
-export const doors = [
-  { title: "Full Stack Apps", body: "Healthcare portals, dashboards and products, frontend to database.", href: "#work" },
-  { title: "E-Commerce", body: "Stores with carts, admin panels, payments-ready flows.", href: "#work" },
-  { title: "Backend & APIs", body: "Node.js and Express services with secure auth.", href: "#experience" },
-  { title: "DevOps", body: "Docker, CI/CD pipelines and deployments.", href: "#experience" },
-  { title: "Freelance", body: "From first sketch to launch for founders and businesses.", href: "#services" },
-];
-
-export const timeline = [
-  { when: "Now", title: "Freelance full stack developer", where: "Remote · India", points: ["Building web products for businesses and founders, from first sketch to launch."] },
-  { when: "Projects", title: "Smart Vaccine System, Forever & JustLPUThings", where: "Personal & community builds", points: ["Booking flows, e-commerce stores and a student study platform, shipped end to end."] },
-  { when: "2023 — 2027", title: "B.Tech, Computer Science & Engineering", where: "Lovely Professional University", points: ["Data structures, operating systems and databases: where it all started."] },
-];
