@@ -56,6 +56,25 @@ function Hero() {
   );
 }
 
+function Manifesto() {
+  const words = ["Design", "Develop", "Deploy", "Full Stack", "Freelance"];
+  return (
+    <section aria-label="Manifesto" className="border-b py-20 md:py-28">
+      <div className="container-page">
+        <Reveal>
+          <p className="eyebrow mb-6">— Manifesto</p>
+          <p className="font-display text-5xl md:text-8xl">I build front<span className="text-primary">.</span> I build back<span className="text-primary">.</span><br /><span className="text-primary">I ship it all.</span></p>
+        </Reveal>
+      </div>
+      <div className="mt-16 overflow-hidden border-y bg-primary py-4 text-primary-foreground">
+        <div className="marquee font-display text-3xl md:text-4xl">
+          {[...words, ...words, ...words, ...words].map((w, i) => <span key={i} className="flex items-center gap-8 pr-8">{w}<span>✦</span></span>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Work() {
   const featured = projects.filter((p) => p.featured);
   return (
@@ -202,6 +221,7 @@ function Index() {
   return (
     <main>
       <Hero />
+      <Manifesto />
       <Work />
       <About />
       <Experience />

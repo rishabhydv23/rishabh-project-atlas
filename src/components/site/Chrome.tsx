@@ -41,7 +41,7 @@ export function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "border-b bg-background/85 backdrop-blur-md" : "border-b border-transparent"}`}>
       <div className="container-page flex h-16 items-center justify-between">
-        <a href="/#home" className="font-display text-xl font-bold">
+        <a href="/#home" className="font-display text-2xl uppercase">
           Rishabh<span className="text-primary">.</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex">
@@ -50,7 +50,6 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="hidden rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground sm:block"><Github className="h-4 w-4" /></a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hidden rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground sm:block"><Linkedin className="h-4 w-4" /></a>
-          <a href={profile.resume} target="_blank" rel="noreferrer" className="hidden rounded-full border px-4 py-1.5 text-sm transition-colors hover:border-primary hover:text-primary sm:inline-flex">Resume</a>
           <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -62,7 +61,6 @@ export function Navbar() {
           <div className="flex gap-4 pt-2 text-sm">
             <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href={profile.resume} target="_blank" rel="noreferrer" className="text-primary">Resume</a>
           </div>
         </nav>
       )}
