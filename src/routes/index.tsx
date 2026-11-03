@@ -7,7 +7,6 @@ import { achievements, certificates, profile, projects, services, skills } from 
 import { Badge, Reveal, SectionHead } from "@/components/site/Reveal";
 import { FeaturedProject } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
-import portrait from "@/assets/rishabh_portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,29 +47,11 @@ function Hero() {
             </div>
           </Reveal>
         </div>
-        <div className="hero-portrait">
-          <img src={portrait.url} alt="Portrait of Rishabh" className="hero-portrait-img" />
-          <div className="hero-portrait-card">
-            <span className="h-2 w-2 rounded-full bg-success" />
-            <div><p className="text-sm font-medium">Rishabh</p><p className="text-xs text-muted-foreground">Full Stack · LPU '27</p></div>
-          </div>
-        </div>
-      </div>
-      <p aria-hidden className="hero-watermark font-display">Rishabh</p>
-      <div className="container-page hero-bottom"><span className="font-mono text-xs text-muted-foreground">DESIGN. DEVELOP. DELIVER.</span><a href="#work" className="flex items-center gap-3 text-xs text-muted-foreground">Selected work <ArrowRight className="h-4 w-4 rotate-90" /></a></div>
-    </section>
-  );
-}
-
-function Toolkit3D() {
-  return (
-    <section aria-label="Interactive toolkit" className="border-b py-16">
-      <div className="container-page">
-        <p className="eyebrow mb-4">— Play with my stack</p>
-        <div className="h-[420px]">
+        <div className="hero-scene">
           <ClientOnly fallback={<div className="tech-scene" />}><Suspense fallback={<div className="tech-scene" />}><TechKeyboard /></Suspense></ClientOnly>
         </div>
       </div>
+      <div className="container-page hero-bottom"><span className="font-mono text-xs text-muted-foreground">DESIGN. DEVELOP. DELIVER.</span><a href="#work" className="flex items-center gap-3 text-xs text-muted-foreground">Selected work <ArrowRight className="h-4 w-4 rotate-90" /></a></div>
     </section>
   );
 }
@@ -240,7 +221,6 @@ function Index() {
   return (
     <main>
       <Hero />
-      <Toolkit3D />
       <Manifesto />
       <Work />
       <About />
